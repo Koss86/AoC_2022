@@ -12,8 +12,8 @@ void remove_newline(char *s) {
         }
     }
 }
-int comp(const void *a, const void *b) {    // a-b will ascend the list(low-high), b-a will descend the list(high-low).
-    return (*(int *)b - *(int *)a);
+int comp(const void *a, const void *b) {
+return (*(int *)b - *(int *)a);     // a - b will ascend the list(low-high), b - a will descend the list(high-low).
 }
 
 int main () {
@@ -64,6 +64,6 @@ int main () {
     highest += elves_calorie_ct[2];
 
     printf("Part 2 answer: %i\n", highest);
-
+    free(elves_calorie_ct);
     return 0;
 }
