@@ -16,39 +16,48 @@ int main () {
         printf("Unable to read file.\n");
         return -1;
     }
-    //  1 = ROCK 2 = PAPER 3 = SCISSORS
-    //  0 = Lost 3 = DRAW  6 = WON
-
-    int score = 0;
+    
+    int score1 = 0;
+    int score2 = 0;
     char opponent, player;
 
     while (fscanf(file, "%c %c\n", &opponent, &player) != EOF) {
         if (opponent == ROCK) {
             if (player == P_ROCK) {
-                score += 4;
+                score1 += 4;
+                score2 += 3;
             } else if (player == P_PAPER) {
-                score += 8;
+                score1 += 8;
+                score2 += 4;
             } else {
-                score += 3;
+                score1 += 3;
+                score2 += 8;
             }
         } else if (opponent == PAPER) {
             if (player == P_ROCK) {
-                score += 1;
+                score1 += 1;
+                score2 += 1;
             } else if (player == P_PAPER) {
-                score += 5;
+                score1 += 5;
+                score2 += 5;
             } else {
-                score += 9;
+                score1 += 9;
+                score2 += 9;
             }
         } else {
             if (player == P_ROCK) {
-                score += 7;
+                score1 += 7;
+                score2 += 2;
             } else if (player == P_PAPER) {
-                score += 2;
+                score1 += 2;
+                score2 += 6;
             } else {
-                score += 6;
+                score1 += 6;
+                score2 += 7;
             }
         }
     }
-    printf("Part 1 answer: %i\n", score);
+    printf("Part 1 answer: %i\n", score1);
+    printf("Part 2 answer: %i\n", score2);
     return 0;
 }
