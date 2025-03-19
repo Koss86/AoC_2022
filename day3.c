@@ -7,7 +7,7 @@
 
 void split_even_string(int, char *, char *);
 bool char_in_str(char, char *);
-int find_priority(char c);
+int return_priority(char c);
 
 int main() {
     FILE *file;
@@ -36,7 +36,7 @@ int main() {
         for (int i = 0; i < leng; i++) {
             char tmp = buff1[i];
             if (char_in_str(tmp, buff2) == true) {
-                sum1 += find_priority(tmp);
+                sum1 += return_priority(tmp);
                 break;
             }
         }
@@ -61,7 +61,7 @@ bool char_in_str(char c, char *s) {
     }
     return false;
 }
-int find_priority(char c) {
+int return_priority(char c) {
     int num;
     if (c >= 'a' && c <= 'z') {
         switch (c) {
