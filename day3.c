@@ -33,7 +33,7 @@ int main() {
         return -1;
     }
     Rucks *rucksacks;
-    if ((rucksacks = malloc(DB_SIZE*sizeof(Rucks))) == NULL) {
+    if ((rucksacks = malloc(DB_SIZE/3*sizeof(Rucks))) == NULL) {
         printf("Error. Malloc failed.\n");
         return -1;
     }
@@ -86,9 +86,11 @@ int main() {
             }
         }
     }
-    printf("Part 1 answer: %i\n", sum);
+
     fclose(file);
+    printf("Part 1 answer: %i\n", sum);
     sum = 0;
+
     for (int i = 0; i < DB_SIZE/3; i++) {
         int leng = strlen(rucksacks[i].str1);
         for (int j = 0; j < leng; j++) {
@@ -101,8 +103,14 @@ int main() {
             }
         }
     }
+
     printf("Part 2 answer: %i\n", sum);
     free(buff1); free(buff2); 
+    for (int i = 0; i < DB_SIZE/3; i++) {
+        free(rucksacks[i].str1);
+        free(rucksacks[i].str2);
+        free(rucksacks[i].str3);
+    }
     return 0;
 }
 void split_even_string(int leng, char *src, char *dest) {
