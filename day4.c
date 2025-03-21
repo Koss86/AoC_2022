@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
 int main() {
     FILE *file;
     if ((file = fopen("inputs/input4.txt", "r")) == NULL) {
@@ -18,6 +16,13 @@ int main() {
             elf2[0] >= elf1[0] && elf2[1] <= elf1[1]) {
                 enclosed++;
         }
+        if (elf1[0] >= elf2[0] && elf1[0] <= elf2[1]) {
+            overlap++;
+        } else if (elf2[0] >= elf1[0] && elf2[0] <= elf1[1]) {
+            overlap++;
+        }
     }
     printf("Part 1 answer: %i\n", enclosed);
+    printf("Part 2 answer: %i\n", overlap);
+    return 0;
 }
