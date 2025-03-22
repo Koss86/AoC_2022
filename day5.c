@@ -26,8 +26,6 @@ int main() {
     char *pFrom, *pTo;
     while (fscanf(file, "move %d from %d to %d\n", &amt, &from, &to) != EOF) {
         switch (from) {
-            case 0:
-                break;
             case 1:
                 pFrom = stack_1;
                 break;
@@ -56,8 +54,6 @@ int main() {
                 pFrom = stack_9;
         }
         switch (to) {
-            case 0:
-                break;
             case 1:
                 pTo = stack_1;
                 break;
@@ -240,7 +236,7 @@ int main() {
         }
         counter++;
     }
-
+    printf("\n");
     return 0;
 }
 
