@@ -41,7 +41,12 @@ int main() {
     char c5, c6, c7, c8, c9, c10,
         c11, c12, c13, c14, c15;
 
-    for (int i = 0; i < leng; i++) {
+    for (int i = 0; i < leng-14; i++) {
+        c1 = buff[i]; c2 = buff[i+1]; c3 = buff[i+2];
+        c4 = buff[i+3]; c5 = buff[i+4]; c6 = buff[i+5];
+        c7 = buff[i+6]; c8 = buff[i+7]; c9 = buff[i+8];
+        c10 = buff[i+9]; c11 = buff[i+10]; c12 = buff[i+11];
+        c13 = buff[i+12]; c14 = buff[i+13]; c15 = buff[i+14];
 
         if (c1 != c2 && c1 != c3 && c1 != c4 &&
             c1 != c5 && c1 != c6 && c1 != c7 &&
@@ -83,9 +88,8 @@ int main() {
                                                                         if (c9 != c10 && c9 != c11 && c9 != c12 && 
                                                                             c9 != c13 && c9 != c14 && c9 != c15) {
 
-                                                                                if ( c10 != c11 && c10 != c12 && 
-                                                                                    c10 != c13 && c10 != c14 &&
-                                                                                    c10 != c15) {
+                                                                                if ( c10 != c11 && c10 != c12 &&
+                                                                                    c10 != c13 && c10 != c14 && c10 != c15) {
 
                                                                                         if (c11 != c12 && c11 != c13 &&
                                                                                             c11 != c14 && c11 != c15) {
