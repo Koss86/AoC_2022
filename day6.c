@@ -1,8 +1,11 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #define BUFF_SIZE 4096
+
+bool are_unique(char *s);
 
 int main() {
     FILE *file;
@@ -38,81 +41,33 @@ int main() {
         } 
     }
 
-    char c5, c6, c7, c8, c9, c10,
-        c11, c12, c13, c14;
+    char *s;
+    if ((s = malloc(15*sizeof(char))) == NULL) {
+        printf("Malloc failed.\n");
+        return -1;
+    }
 
-    for (int i = 0; i < leng-1; i++) {
-        c1 = buff[i]; c2 = buff[i+1]; c3 = buff[i+2];
-        c4 = buff[i+3]; c5 = buff[i+4]; c6 = buff[i+5];
-        c7 = buff[i+6]; c8 = buff[i+7]; c9 = buff[i+8];
-        c10 = buff[i+9]; c11 = buff[i+10]; c12 = buff[i+11];
-        c13 = buff[i+12]; c14 = buff[i+13];
-
-        if (c1 != c2 && c1 != c3 && c1 != c4 &&
-            c1 != c5 && c1 != c6 && c1 != c7 &&
-            c1 != c8 && c1 != c9 && c1 != c10 &&
-            c1 != c11 && c1 != c12 && c1 != c13 &&
-            c1 != c14) {
-
-                if (c2 != c3 && c2 != c4 &&
-                    c2 != c5 && c2 != c6 && c2 != c7 &&
-                    c2 != c8 && c2 != c9 && c2 != c10 &&
-                    c2 != c11 && c2 != c12 && c2 != c13 &&
-                    c2 != c14) {
-
-                        if (c3 != c4 && c3 != c5 && c3 != c6 && 
-                            c3 != c7 && c3 != c8 && c3 != c9 && 
-                            c3 != c10 && c3 != c11 && c3 != c12 && 
-                            c3 != c13 && c3 != c14) {
-
-                                if (c4 != c5 && c4 != c6 && 
-                                    c4 != c7 && c4 != c8 && c4 != c9 && 
-                                    c4 != c10 && c4 != c11 && c4 != c12 && 
-                                    c4 != c13 && c4 != c14) {
-
-                                        if (c5 != c6 && c5 != c7 && c5 != c8 && c5 != c9 && 
-                                            c5 != c10 && c5 != c11 && c5 != c12 && 
-                                            c5 != c13 && c5 != c14) {
-
-                                                if (c6 != c7 && c6 != c8 && c6 != c9 && 
-                                                    c6 != c10 && c6 != c11 && c6 != c12 && 
-                                                    c6 != c13 && c6 != c14) {
-
-                                                        if ( c7 != c8 && c7 != c9 && 
-                                                            c7 != c10 && c7 != c11 && c7 != c12 && 
-                                                            c7 != c13 && c7 != c14) {
-
-                                                                if (c8 != c9 && c8 != c10 && c8 != c11 && c8 != c12 && 
-                                                                    c8 != c13 && c8 != c14) {
-
-                                                                        if (c9 != c10 && c9 != c11 && c9 != c12 && 
-                                                                            c9 != c13 && c9 != c14) {
-
-                                                                                if ( c10 != c11 && c10 != c12 &&
-                                                                                    c10 != c13 && c10 != c14 ) {
-
-                                                                                        if (c11 != c12 && c11 != c13 &&
-                                                                                            c11 != c14 ) {
-
-                                                                                                if (c12 != c13 && c12 != c14 ) {
-
-                                                                                                    if (c13 != c14 ) {
-                                                                                                        printf("Part 2 answer: %i\n", i+14);
-                                                                                                        break;
-                                                                                                    }
-                                                                                                }
-                                                                                            }
-                                                                                    }
-                                                                            }
-                                                                    }
-                                                            }
-                                                    }
-                                            }
-                                    }
-                            }
-                    }
-            }
+    for (int i = 0; i < leng-1; i += 14) {
+        strncpy(s, buff+i, 14);
+        if (are_unique(s) == true) {
+            printf("Part 2 answer: %i\n", i+13);
+            break;
+        }
     }
 
     return 0;
+}
+
+bool are_unique(char *s) {
+    int leng = strlen(s);
+    for (int i = 0; i < leng-1; i++) {
+        char c1 = s[i];
+        for (int j = i+1; j < leng-1; j++) {
+            char c2 = s[j];
+            if (c1 == c2) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
