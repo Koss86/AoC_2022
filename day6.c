@@ -4,6 +4,8 @@
 #include <string.h>
 
 #define BUFF_SIZE 4096
+#define L_BUFF 14
+#define S_BUFF 4
 
 bool are_unique(char *s);
 
@@ -19,7 +21,7 @@ int main() {
  
     }
     char *s;
-    if ((s = malloc(15*sizeof(char))) == NULL) {
+    if ((s = malloc(L_BUFF+1*sizeof(char))) == NULL) {
         printf("Malloc failed.\n");
         return -1;
     }
@@ -31,18 +33,18 @@ int main() {
     int leng = strlen(buff);
 
     for (int i = 0; i < leng-1; i++) {
-        strncpy(s, &buff[i], 4);
+        strncpy(s, &buff[i], S_BUFF);
         if (are_unique(s)) {
-            printf("Part 1 answer: %i\n", i+4);
+            printf("Part 1 answer: %i\n", i+S_BUFF);
             break;
         }
     }
 
 
     for (int i = 0; i < leng-1; i++) {
-        strncpy(s, buff+i, 14);
+        strncpy(s, buff+i, L_BUFF);
         if (are_unique(s)) {
-            printf("Part 2 answer: %i\n", i+14);
+            printf("Part 2 answer: %i\n", i+L_BUFF);
             break;
         }
     }
