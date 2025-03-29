@@ -9,5 +9,5 @@ int main() {
         return -1;
     }
     char buffer[256];
-   memset(buffer, 0, 256*sizeof(char)); 
+    memset(buffer, 0, 256*sizeof(char)); 
 }
