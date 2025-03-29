@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-
+#include <string.h>
 
 int main() {
     FILE *file;
@@ -9,5 +8,6 @@ int main() {
         printf("Unable to open file.\n");
         return -1;
     }
-    
+    char buffer[256];
+   memset(buffer, 0, 256*sizeof(char)); 
 }
