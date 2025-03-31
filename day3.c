@@ -245,4 +245,5 @@ int return_priority(char c) {
                 return 52;
         }
     }
+    return 0;
 }
