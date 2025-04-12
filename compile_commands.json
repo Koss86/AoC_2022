@@ -1,0 +1,44 @@
+[
+  {
+    "directory": "$HOME/coding/aoc/$cwd",
+    "command": "g++",
+    "args": [
+      "-std=c++20",
+      "-g",
+      "-c",
+      "-o",
+      "$HOME/coding/aoc/$cwd/bin/main.o",
+      "$HOME/coding/aoc/$cwd/src/main.cpp"
+    ],
+    "file": "$HOME/coding/aoc/$cwd/src/main.cpp",
+    "cincludeoptions": ["-I$HOME/coding/aoc/$cwd/include"]
+  },
+  {
+    "directory": "$HOME/coding/aoc/$cwd",
+    "command": "g++",
+    "args": [
+      "-std=c++20",
+      "-g",
+      "-c",
+      "-o",
+      "$HOME/coding/aoc/$cwd/bin/utils.o",
+      "$HOME/coding/aoc/$cwd/src/utils.cpp"
+    ],
+    "file": "$HOME/coding/aoc/$cwd/src/utils.cpp",
+    "cincludeoptions": ["-I$HOME/coding/aoc/$cwd/include"]
+  },
+  {
+    "directory": "$HOME/coding/aoc/$cwd",
+    "command": "g++",
+    "args": [
+      "-std=c++20",
+      "-g",
+      "-o",
+      "$HOME/coding/aoc/$cwd/bin/main",
+      "$HOME/coding/aoc/$cwd/bin/main.o",
+      "$HOME/coding/aoc/$cwd/bin/utils.o"
+    ],
+    "file": "$HOME/coding/aoc/$cwd/src/main.cpp",
+    "cincludeoptions": ["-I$HOME/coding/aoc/$cwd/include"]
+  }
+]
