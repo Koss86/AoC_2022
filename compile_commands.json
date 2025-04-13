@@ -1,44 +1,44 @@
 [
   {
-    "directory": "$HOME/coding/aoc/$cwd",
+    "directory": "$HOME/coding/aoc/2022",
     "command": "g++",
     "args": [
       "-std=c++20",
       "-g",
       "-c",
       "-o",
-      "$HOME/coding/aoc/$cwd/bin/main.o",
-      "$HOME/coding/aoc/$cwd/src/main.cpp"
+      "$HOME/coding/aoc/2022/bin/main.o",
+      "$HOME/coding/aoc/2022/src/main.cpp"
     ],
-    "file": "$HOME/coding/aoc/$cwd/src/main.cpp",
-    "cincludeoptions": ["-I$HOME/coding/aoc/$cwd/include"]
+    "file": "$HOME/coding/aoc/2022/src/main.cpp",
+    "cincludeoptions": ["-I$HOME/coding/aoc/2022/include"]
   },
   {
-    "directory": "$HOME/coding/aoc/$cwd",
+    "directory": "$HOME/coding/aoc/2022",
     "command": "g++",
     "args": [
       "-std=c++20",
       "-g",
       "-c",
       "-o",
-      "$HOME/coding/aoc/$cwd/bin/utils.o",
-      "$HOME/coding/aoc/$cwd/src/utils.cpp"
+      "$HOME/coding/aoc/2022/bin/utils.o",
+      "$HOME/coding/aoc/2022/src/utils.cpp"
     ],
-    "file": "$HOME/coding/aoc/$cwd/src/utils.cpp",
-    "cincludeoptions": ["-I$HOME/coding/aoc/$cwd/include"]
+    "file": "$HOME/coding/aoc/2022/src/utils.cpp",
+    "cincludeoptions": ["-I$HOME/coding/aoc/2022/include"]
   },
   {
-    "directory": "$HOME/coding/aoc/$cwd",
+    "directory": "$HOME/coding/aoc/2022",
     "command": "g++",
     "args": [
       "-std=c++20",
       "-g",
       "-o",
-      "$HOME/coding/aoc/$cwd/bin/main",
-      "$HOME/coding/aoc/$cwd/bin/main.o",
-      "$HOME/coding/aoc/$cwd/bin/utils.o"
+      "$HOME/coding/aoc/2022/bin/main",
+      "$HOME/coding/aoc/2022/bin/main.o",
+      "$HOME/coding/aoc/2022/bin/utils.o"
     ],
-    "file": "$HOME/coding/aoc/$cwd/src/main.cpp",
-    "cincludeoptions": ["-I$HOME/coding/aoc/$cwd/include"]
+    "file": "$HOME/coding/aoc/2022/src/main.cpp",
+    "cincludeoptions": ["-I$HOME/coding/aoc/2022/include"]
   }
 ]
