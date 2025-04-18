@@ -4,7 +4,7 @@
 #define NUM_ROWS 99
 
 typedef struct Field {
-  int row[NUM_ROWS];
+  int col[NUM_ROWS];
 } Field;
 
 int main(void) {
@@ -13,8 +13,8 @@ int main(void) {
     printf("Unable to open file.\n");
     return -1;
   }
-  Field *field;
-  if ((field = malloc(sizeof(Field) * NUM_ROWS)) == NULL) {
+  Field *row;
+  if ((row = malloc(sizeof(Field) * NUM_ROWS)) == NULL) {
     printf("Malloc failed.\n");
     return -1;
   }
@@ -24,26 +24,25 @@ int main(void) {
   int indx2 = 0;
 
   while ((c = fgetc(file)) != EOF) {
-    if (c != '\0' && c != '\n') {
-      // Place ints into struct until end of string.
-      field[indx1].row[indx2++] = atoi(&c);
+    if (c >= '0' && c <= '9') {
+      // Place tree height into relative col index until end of line.
+      row[indx1].col[indx2++] = atoi(&c);
     } else if (c == '\n') {
-      // continue here so indx1 doesn't get incremented twice.
-      continue;
-    } else {
-      // Increment indx1 to go to next row,
-      // reset indx2 to start at beginning of next row.
+      // Icrement indx1 to move to next row,
+      // and reset indx2 to start at beginning of col.
       indx1++;
       indx2 = 0;
     }
   }
 
-  for (int i = 0; i < NUM_ROWS; i++) {
-    for (int j = 0; j < NUM_ROWS; j++) {
-      printf("%d", field[i].row[j]);
+  /*  // Print each row of nums
+    for (int i = 0; i < NUM_ROWS; i++) {
+      for (int j = 0; j < NUM_ROWS; j++) {
+        printf("%d", row[i].col[j]);
+      }
+      printf("\n");
     }
-    printf("\n");
-  }
+  */
 
   return 0;
 }
