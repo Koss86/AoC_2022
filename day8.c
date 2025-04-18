@@ -71,19 +71,12 @@ bool is_visable(Field *field, int row, int col) {
       taller++;
     }
   }
-  if ((--taller) == 0) {
-    return true;
-  }
-  taller = 0;
 
   // check col
   for (int i = 0; i < NUM_ROWS; i++) {
     if (field[i].col[col] >= tree_size) {
       taller++;
     }
-  }
-  if ((--taller) == 0) {
-    return true;
   }
   return false;
 }
