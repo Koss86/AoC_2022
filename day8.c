@@ -10,6 +10,7 @@ typedef struct Field {
 } Field;
 
 bool is_visable(Field *field, int row, int col);
+int find_perf_view(Field *field, int row, int col);
 
 int main(void) {
   FILE *file;
@@ -37,6 +38,7 @@ int main(void) {
     }
   }
   int boarder_trees = (NUM_ROWS * 2) + (NUM_ROWS - 2) * 2;
+  int perfect_view = 0;
   int visable = 0;
   // Start at 1 to skip 1st row/col since it's visable
   // NUM_ROWS-1 to skip last row/col
@@ -66,13 +68,13 @@ int main(void) {
 
 bool is_visable(Field *field, int row, int col) {
   int taller = 0;
-  int tree_size = field[row].col[col];
+  int cur_tree = field[row].col[col];
 
   // check row to left of tree_size
   for (int i = 0; i < col; i++) {
-    if (field[row].col[i] >= tree_size) {
+    if (field[row].col[i] >= cur_tree) {
       taller++;
-      // printf("tree size: %i taller: %i\n", tree_size, field[row].col[i]);
+      // printf("tree size: %i taller: %i\n", cur_tree, field[row].col[i]);
     }
   }
 
@@ -81,11 +83,11 @@ bool is_visable(Field *field, int row, int col) {
   }
   taller = 0;
 
-  // check row to right of tree_size
+  // check row to right ofcur_tree
   for (int i = col + 1; i < NUM_ROWS; i++) {
-    if (field[row].col[i] >= tree_size) {
+    if (field[row].col[i] >= cur_tree) {
       taller++;
-      // printf("tree size: %i taller: %i\n", tree_size, field[row].col[i]);
+      // printf("tree size: %i taller: %i\n", cur_tree, field[row].col[i]);
     }
   }
 
@@ -94,11 +96,11 @@ bool is_visable(Field *field, int row, int col) {
   }
   taller = 0;
 
-  // check cols above tree_size
+  // check cols abovecur_tree
   for (int i = 0; i < row; i++) {
-    if (field[i].col[col] >= tree_size) {
+    if (field[i].col[col] >= cur_tree) {
       taller++;
-      // printf("tree size: %i taller: %i\n", tree_size, field[i].col[col]);
+      // printf("tree size: %i taller: %i\n", cur_tree, field[i].col[col]);
     }
   }
 
@@ -107,11 +109,11 @@ bool is_visable(Field *field, int row, int col) {
   }
   taller = 0;
 
-  // check cols below tree_size
+  // check cols belowcur_tree
   for (int i = row + 1; i < NUM_ROWS; i++) {
-    if (field[i].col[col] >= tree_size) {
+    if (field[i].col[col] >= cur_tree) {
       taller++;
-      // printf("tree size: %i taller: %i\n", tree_size, field[i].col[col]);
+      // printf("tree size: %i taller: %i\n", cur_tree, field[i].col[col]);
     }
   }
 
@@ -120,4 +122,11 @@ bool is_visable(Field *field, int row, int col) {
   }
 
   return false;
+}
+
+int find_perf_view(Field *field, int row, int col) {
+  int pv = 0;
+  int cur_tree = field[row].col[col];
+
+  return pv;
 }
