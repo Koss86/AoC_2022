@@ -33,7 +33,7 @@ int main(void) {
       // end of line.
       row[indx1].col[indx2++] = c - '0';
     } else if (c == '\n') {
-      indx1++;   // Icrement indx1 to move to next row,
+      indx1++;   // Increment indx1 to move to next row,
       indx2 = 0; // and reset indx2 to start at beginning of col.
     }
   }
@@ -54,9 +54,9 @@ int main(void) {
   // Answer: 1713
   printf("Part 1 answer: %d\n", visable + boarder_trees);
 
-  int cur_pv = 0;
-  for (int i = 1; i < NUM_ROWS - 1; i++) {
-    for (int j = 1; j < NUM_ROWS - 1; j++) {
+  for (int i = 0; i < NUM_ROWS; i++) {
+    int cur_pv = 0;
+    for (int j = 0; j < NUM_ROWS; j++) {
       cur_pv = find_perf_view(row, i, j);
       if (cur_pv > perfect_view) {
         perfect_view = cur_pv;
