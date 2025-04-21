@@ -54,6 +54,18 @@ int main(void) {
   // Answer: 1713
   printf("Part 1 answer: %d\n", visable + boarder_trees);
 
+  int cur_pv = 0;
+  for (int i = 1; i < NUM_ROWS - 1; i++) {
+    for (int j = 1; j < NUM_ROWS - 1; j++) {
+      cur_pv = find_perf_view(row, i, j);
+      if (cur_pv > perfect_view) {
+        perfect_view = cur_pv;
+      }
+    }
+  }
+
+  printf("Part 2 answer: %d\n", perfect_view);
+
   /* // Print each row of nums
   for (int i = 0; i < NUM_ROWS; i++) {
     for (int j = 0; j < NUM_ROWS; j++) {
@@ -70,11 +82,10 @@ bool is_visable(Field *field, int row, int col) {
   int taller = 0;
   int cur_tree = field[row].col[col];
 
-  // check row to left of tree_size
+  // check row to left of cur_tree
   for (int i = 0; i < col; i++) {
     if (field[row].col[i] >= cur_tree) {
       taller++;
-      // printf("tree size: %i taller: %i\n", cur_tree, field[row].col[i]);
     }
   }
 
@@ -83,11 +94,10 @@ bool is_visable(Field *field, int row, int col) {
   }
   taller = 0;
 
-  // check row to right ofcur_tree
+  // check row to right of cur_tree
   for (int i = col + 1; i < NUM_ROWS; i++) {
     if (field[row].col[i] >= cur_tree) {
       taller++;
-      // printf("tree size: %i taller: %i\n", cur_tree, field[row].col[i]);
     }
   }
 
@@ -96,11 +106,10 @@ bool is_visable(Field *field, int row, int col) {
   }
   taller = 0;
 
-  // check cols abovecur_tree
+  // check cols above cur_tree
   for (int i = 0; i < row; i++) {
     if (field[i].col[col] >= cur_tree) {
       taller++;
-      // printf("tree size: %i taller: %i\n", cur_tree, field[i].col[col]);
     }
   }
 
@@ -109,11 +118,10 @@ bool is_visable(Field *field, int row, int col) {
   }
   taller = 0;
 
-  // check cols belowcur_tree
+  // check cols below cur_tree
   for (int i = row + 1; i < NUM_ROWS; i++) {
     if (field[i].col[col] >= cur_tree) {
       taller++;
-      // printf("tree size: %i taller: %i\n", cur_tree, field[i].col[col]);
     }
   }
 
@@ -127,6 +135,42 @@ bool is_visable(Field *field, int row, int col) {
 int find_perf_view(Field *field, int row, int col) {
   int pv = 0;
   int cur_tree = field[row].col[col];
+  int left, right, above, below;
+  left = right = above = below = 0;
+
+  // check row to left of cur_tree
+  for (int i = 0; i < col; i++) {
+    if (field[row].col[i] >= cur_tree) {
+      left = i + 1;
+      break;
+    }
+  }
+
+  // check row to right of cur_tree
+  for (int i = col + 1; i < NUM_ROWS; i++) {
+    if (field[row].col[i] >= cur_tree) {
+      right = i + 1;
+      break;
+    }
+  }
+
+  // check cols above cur_tree
+  for (int i = 0; i < row; i++) {
+    if (field[i].col[col] >= cur_tree) {
+      above = i + 1;
+      break;
+    }
+  }
+
+  // check cols below cur_tree
+  for (int i = row + 1; i < NUM_ROWS; i++) {
+    if (field[i].col[col] >= cur_tree) {
+      below = i + 1;
+      break;
+    }
+  }
+
+  pv = left * right * above * below;
 
   return pv;
 }
