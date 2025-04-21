@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,17 +26,14 @@ int main(void) {
   char c = 0;
   int indx1 = 0;
   int indx2 = 0;
-
   while ((c = fgetc(file)) != EOF) {
-    if (c >= '0' && c <= '9') {
+    if (isdigit(c)) {
       // Place tree height into relative col index, then increment indx2, until
       // end of line.
-      row[indx1].col[indx2++] = atoi(&c);
+      row[indx1].col[indx2++] = c - '0';
     } else if (c == '\n') {
       indx1++;   // Icrement indx1 to move to next row,
       indx2 = 0; // and reset indx2 to start at beginning of col.
-    } else {
-      continue;
     }
   }
   int boarder_trees = (NUM_ROWS * 2) + (NUM_ROWS - 2) * 2;
@@ -51,7 +49,7 @@ int main(void) {
       }
     }
   }
-  // 499 too low
+  // Answer: 1713
   printf("Part 1 answer: %d\n", visable + boarder_trees);
 
   /* // Print each row of nums
