@@ -129,6 +129,7 @@ bool is_visable(Field *field, int row, int col) {
   return false;
 }
 
+// 9317154 too high. 161280 not correct.
 int find_perf_view(Field *field, int row, int col) {
   int pv = 0;
   int cur_tree = field[row].col[col];
@@ -137,50 +138,43 @@ int find_perf_view(Field *field, int row, int col) {
 
   // check row to left of cur_tree
   for (int i = 0; i < col; i++) {
-    if (col == 0) {
-      left = 0;
-      break;
-    }
     if (field[row].col[i] >= cur_tree) {
-      left = i + 1;
+      left = i;
       break;
     }
   }
 
   // check row to right of cur_tree
-  for (int i = col + 1; i < NUM_ROWS; i++) {
-    if (col == 98) {
-      right = 0;
-      break;
-    }
+  for (int i = col + 1, ct = 0; i < NUM_ROWS; i++) {
     if (field[row].col[i] >= cur_tree) {
-      right = i + 1;
+      right = ct;
       break;
     }
+    ct++;
   }
 
   // check cols above cur_tree
   for (int i = 0; i < row; i++) {
     if (row == 0) {
-      above = 0;
-      break;
+      printf("row is 0\n");
     }
     if (field[i].col[col] >= cur_tree) {
-      above = i + 1;
+      above = i;
+      if (row == 0) {
+        printf("above = %i", above);
+        printf("\n");
+      }
       break;
     }
   }
 
   // check cols below cur_tree
-  for (int i = row + 1; i < NUM_ROWS; i++) {
-    if (row == 98) {
-      below = 0;
-      break;
-    }
+  for (int i = row + 1, ct = 0; i < NUM_ROWS; i++) {
     if (field[i].col[col] >= cur_tree) {
-      below = i + 1;
+      below = ct;
       break;
     }
+    ct++;
   }
 
   pv = left * right * above * below;
