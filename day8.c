@@ -93,85 +93,89 @@ bool is_visable(Field *field, int row, int col) {
 
   // check row to right of cur_tree
   for (int i = col + 1; i < NUM_ROWS; i++) {
-
-    if (taller == 0) {
-      return true;
+    if (field[row].col[i] >= cur_tree) {
+      taller++;
     }
-    taller = 0;
-
-    // check cols above cur_tree
-    for (int i = 0; i < row; i++) {
-      if (field[i].col[col] >= cur_tree) {
-        taller++;
-      }
-    }
-
-    if (taller == 0) {
-      return true;
-    }
-    taller = 0;
-
-    // check cols below cur_tree
-    for (int i = row + 1; i < NUM_ROWS; i++) {
-      if (field[i].col[col] >= cur_tree) {
-        taller++;
-      }
-    }
-
-    if (taller == 0) {
-      return true;
-    }
-
-    return false;
   }
 
-  // 9317154 too high. 161280 not correct.
-  int find_perf_view(Field * field, int row, int col) {
-    int pv = 0;
-    int cur_tree = field[row].col[col];
-    int left, right, above, below;
-    left = right = above = below = 0;
-
-    // check row to left of cur_tree
-    // Starting left of cur_tree position and going
-    // left until a tree taller or same height
-    // is found or edge is hit
-    for (int i = col - 1, ct = 0; i >= 0; i--) {
-      ct++;
-      if (field[row].col[i] >= cur_tree) {
-        left = ct;
-        break;
-      }
-    }
-
-    // check row to right of cur_tree
-    for (int i = col + 1, ct = 0; i < NUM_ROWS; i++) {
-      ct++;
-      if (field[row].col[i] >= cur_tree) {
-        right = ct;
-        break;
-      }
-    }
-
-    // check cols above cur_tree
-    for (int i = row - 1, ct = 0; i >= row; i--) {
-      ct++;
-      if (field[i].col[col] >= cur_tree) {
-        above = ct;
-        break;
-      }
-    }
-
-    // check cols below cur_tree
-    for (int i = row + 1, ct = 0; i < NUM_ROWS; i++) {
-      ct++;
-      if (field[i].col[col] >= cur_tree) {
-        below = ct;
-        break;
-      }
-    }
-
-    pv = left * right * above * below;
-
-    return pv;
+  if (taller == 0) {
+    return true;
   }
+  taller = 0;
+
+  // check cols above cur_tree
+  for (int i = 0; i < row; i++) {
+    if (field[i].col[col] >= cur_tree) {
+      taller++;
+    }
+  }
+
+  if (taller == 0) {
+    return true;
+  }
+  taller = 0;
+
+  // check cols below cur_tree
+  for (int i = row + 1; i < NUM_ROWS; i++) {
+    if (field[i].col[col] >= cur_tree) {
+      taller++;
+    }
+  }
+
+  if (taller == 0) {
+    return true;
+  }
+
+  return false;
+}
+
+// 9317154 too high. 161280 not correct.
+int find_perf_view(Field *field, int row, int col) {
+  int pv = 0;
+  int cur_tree = field[row].col[col];
+  int left, right, above, below;
+  left = right = above = below = 0;
+
+  // check row to left of cur_tree
+  // Starting left of cur_tree position and going
+  // left until a tree taller or same height
+  // is found or edge is hit
+  for (int i = col - 1, ct = 0; i >= 0; i--) {
+    ct++;
+    if (field[row].col[i] >= cur_tree) {
+      left = ct;
+      break;
+    }
+  }
+
+  // check row to right of cur_tree
+  for (int i = col + 1, ct = 0; i < NUM_ROWS; i++) {
+    ct++;
+    if (field[row].col[i] >= cur_tree) {
+      right = ct;
+      break;
+    }
+  }
+
+  // check cols above cur_tree
+  for (int i = row - 1, ct = 0; i >= row; i--) {
+    ct++;
+    if (field[i].col[col] >= cur_tree) {
+      above = ct;
+      break;
+    }
+  }
+
+  // check cols below cur_tree
+  for (int i = row + 1, ct = 0; i < NUM_ROWS; i++) {
+    ct++;
+    if (field[i].col[col] >= cur_tree) {
+      below = ct;
+      break;
+    }
+  }
+
+  pv = left * right * above * below;
+
+  return pv;
+}
