@@ -52,11 +52,12 @@ int main(void) {
   printf("Part 1 answer: %d\n", visable + boarder_trees);
 
   int perfect_view = 0;
-  for (int i = 0, cur_pv = 0; i < NUM_ROWS; i++) {
-    for (int j = 0; j < NUM_ROWS; j++) {
+  for (int i = 1, cur_pv = 0; i < NUM_ROWS - 1; i++) {
+    for (int j = 1; j < NUM_ROWS - 1; j++) {
       cur_pv = find_perf_view(row, i, j);
       if (cur_pv > perfect_view) {
         perfect_view = cur_pv;
+        printf("pv change at row: %i col: %i pv: %i\n", i, j, cur_pv);
       }
     }
   }
@@ -129,9 +130,8 @@ bool is_visable(Field *field, int row, int col) {
   return false;
 }
 
-// 9317154 too high. 161280 not correct.
+// 9317154 too high. 161280 not correct. 14040 not correct.
 int find_perf_view(Field *field, int row, int col) {
-  int pv = 0;
   int cur_tree = field[row].col[col];
   int left, right, above, below;
   left = right = above = below = 0;
@@ -158,7 +158,7 @@ int find_perf_view(Field *field, int row, int col) {
   }
 
   // check cols above cur_tree
-  for (int i = row - 1, ct = 0; i >= row; i--) {
+  for (int i = row - 1, ct = 0; i >= 0; i--) {
     ct++;
     if (field[i].col[col] >= cur_tree) {
       above = ct;
@@ -175,7 +175,7 @@ int find_perf_view(Field *field, int row, int col) {
     }
   }
 
-  pv = left * right * above * below;
+  int pv = left * right * above * below;
 
   return pv;
 }
