@@ -37,7 +37,7 @@ int main(void) {
       indx2 = 0; // and reset indx2 to start at beginning of col.
     }
   }
-  int boarder_trees = (NUM_ROWS * 2) + (NUM_ROWS - 2) * 2;
+  int border_trees = (NUM_ROWS * 2) + (NUM_ROWS - 2) * 2;
   int visable = 0;
   // Start at 1 to skip 1st row/col since it's visable
   // NUM_ROWS-1 to skip last row/col
@@ -49,7 +49,7 @@ int main(void) {
     }
   }
   // Answer: 1713
-  printf("Part 1 answer: %d\n", visable + boarder_trees);
+  printf("Part 1 answer: %d\n", visable + border_trees);
 
   int perfect_view = 0;
   for (int i = 7, cur_pv = 0; i < NUM_ROWS - 1; i++) {
