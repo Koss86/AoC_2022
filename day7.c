@@ -44,5 +44,7 @@ int main() {
     }
   }
 
+  fclose(file);
+  free(filesystem);
   return 0;
 }
